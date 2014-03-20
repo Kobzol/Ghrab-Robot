@@ -11,15 +11,10 @@
 
 #include "funkce.h"
 
-namespace robot
-{
-
 #define KOMPAS PD6
 #define KOMPAS_PIN PIND
 
-unsigned long kompas_zmerUhel();
-bool kompas_srovnejSmery(unsigned int prvni_smer, unsigned int druhy_smer);
-
-}
+ulong kompas_zmerUhel();
+int kompas_srovnejSmery(uint prvni_smer, uint druhy_smer);
 
 #endif /* KOMPAS_H_ */

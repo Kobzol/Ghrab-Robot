@@ -11,9 +11,6 @@
 #define SONAR_H_
 
 #include "funkce.h"
-
-namespace robot
-{
 	
 #define TRIGGER PD7
 #define TRIGGER_PORT PORTD
@@ -28,18 +25,13 @@ namespace robot
 #define SONAR_PRAVY_PORT PORTB
 #define SONAR_PRAVY_PIN PINB
 
-typedef unsigned int sonar_tik;
-
-struct Vzdalenost {
-	sonar_tik Vepredu;
-	sonar_tik Vlevo;
-	sonar_tik Vpravo;
-	Vzdalenost() : Vepredu(0), Vlevo(0), Vpravo(0) {}
-};
+typedef struct {
+	uint Vepredu;
+	uint Vlevo;
+	uint Vpravo;
+} Vzdalenost;
 
 void sonar_init();
 Vzdalenost sonar_zmerVzdalenosti();
-
-}
 
 #endif /* SONAR_H_ */

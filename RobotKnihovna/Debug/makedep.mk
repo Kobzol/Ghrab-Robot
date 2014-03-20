@@ -2,13 +2,13 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-robot\bluetooth.cpp
+robot\bluetooth.c
 
-robot\funkce.cpp
+robot\funkce.c
 
-robot\kompas.cpp
+robot\kompas.c
 
-robot\motor.cpp
+robot\motor.c
 
-robot\sonar.cpp
+robot\sonar.c
 

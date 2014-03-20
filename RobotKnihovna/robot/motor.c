@@ -11,88 +11,88 @@
 /// <remarks>	Jakub, 13.1.14. </remarks>
 ///-------------------------------------------------------------------------------------------------
 
-void robot::motor_init()
+void motor_init()
 {
-	ON(MOTOR1_DDR, MOTOR1);
-	ON(MOTOR2_DDR, MOTOR2);
-	ON(MOTOR3_DDR, MOTOR3);
-	ON(MOTOR4_DDR, MOTOR4);
+	ZAPNI(MOTOR1_DDR, MOTOR1);
+	ZAPNI(MOTOR2_DDR, MOTOR2);
+	ZAPNI(MOTOR3_DDR, MOTOR3);
+	ZAPNI(MOTOR4_DDR, MOTOR4);
 }
-void robot::levy_vpred()
+void levy_vpred()
 {  
-	ON(MOTOR1_PORT, MOTOR1);
-	OFF(MOTOR2_PORT, MOTOR2);	
+	ZAPNI(MOTOR1_PORT, MOTOR1);
+	VYPNI(MOTOR2_PORT, MOTOR2);	
 }
-void robot::levy_vzad()
+void levy_vzad()
 {  
-	OFF(MOTOR1_PORT, MOTOR1);
-	ON(MOTOR2_PORT, MOTOR2); 
+	VYPNI(MOTOR1_PORT, MOTOR1);
+	ZAPNI(MOTOR2_PORT, MOTOR2); 
 }
-void robot::levy_stop()
+void levy_stop()
 {  
-	OFF(MOTOR1_PORT, MOTOR1);
-	OFF(MOTOR2_PORT, MOTOR2);
+	VYPNI(MOTOR1_PORT, MOTOR1);
+	VYPNI(MOTOR2_PORT, MOTOR2);
 }
-void robot::pravy_vpred()
+void pravy_vpred()
 {
-	ON(MOTOR3_PORT, MOTOR3);
-	OFF(MOTOR4_PORT, MOTOR4);
+	ZAPNI(MOTOR3_PORT, MOTOR3);
+	VYPNI(MOTOR4_PORT, MOTOR4);
 }
-void robot::pravy_vzad()
+void pravy_vzad()
 {
-	OFF(MOTOR3_PORT, MOTOR3);
-	ON(MOTOR4_PORT, MOTOR4);
+	VYPNI(MOTOR3_PORT, MOTOR3);
+	ZAPNI(MOTOR4_PORT, MOTOR4);
 }
-void robot::pravy_stop()
+void pravy_stop()
 {
-	OFF(MOTOR3_PORT, MOTOR3);
-	OFF(MOTOR4_PORT, MOTOR4);
+	VYPNI(MOTOR3_PORT, MOTOR3);
+	VYPNI(MOTOR4_PORT, MOTOR4);
 }
-void robot::jed_dopredu()
+void jed_dopredu()
 {
 	levy_vpred();
 	pravy_vpred();
 }
-void robot::jed_dozadu()
+void jed_dozadu()
 {
 	levy_vzad();
 	pravy_vzad();
 }
-void robot::zastav()
+void zastav()
 {
 	levy_stop();
 	pravy_stop();
 }
-void robot::toc_doprava()
+void toc_doprava()
 {
 	levy_vpred();
 	pravy_vzad();
 	
-	delay(500);
+	pockej(CAS_MEZI_OTOCENIM);
 	
 	levy_stop();
 	pravy_stop();
 }
-void robot::toc_doleva()
+void toc_doleva()
 {
 	pravy_vpred();
 	levy_vzad();
 	
-	delay(500);
+	pockej(CAS_MEZI_OTOCENIM);
 	
 	levy_stop();
 	pravy_stop();
 }
-void robot::toc_uhel(unsigned int cilovy_uhel)
+void toc_uhel(uint cilovy_uhel)
 {
 	cilovy_uhel = cilovy_uhel % 360;
 	
-	bool doprava;
+	int doprava;
 	int poSmeru = 0;
 	int protiSmeru = 0;
 	
-	unsigned int uhel = kompas_zmerUhel(); // poèáteèní phel
-	unsigned int vzdalenost = abs(cilovy_uhel - uhel); // absolutní vzdálenost mezi úhly
+	uint uhel = kompas_zmerUhel(); // poèáteèní phel
+	uint vzdalenost = abs(cilovy_uhel - uhel); // absolutní vzdálenost mezi úhly
 	
 	/*// poSmeru - 0 ? 360, toèení doprava
 	if (cilovy_uhel > uhel)

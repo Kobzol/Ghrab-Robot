@@ -10,11 +10,10 @@
 #define MOTOR_H_
 
 #include <avr/io.h>
+#include <stdlib.h>
+
 #include "funkce.h"
 #include "kompas.h"
-
-namespace robot 
-{
 
 #define MOTOR1 PD3
 #define MOTOR1_PORT PORTD
@@ -29,6 +28,8 @@ namespace robot
 #define MOTOR4_PORT PORTD
 #define MOTOR4_DDR DDRD
 
+#define CAS_MEZI_OTOCENIM 500
+
 void motor_init();
 void levy_vpred();
 void levy_vzad();
@@ -41,8 +42,6 @@ void jed_dozadu();
 void zastav();
 void toc_doprava();
 void toc_doleva();
-void toc_uhel(unsigned int cilovy_uhel);
-
-}
+void toc_uhel(uint cilovy_uhel);
 
 #endif /* MOTOR_H_ */

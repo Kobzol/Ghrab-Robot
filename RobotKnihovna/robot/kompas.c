@@ -7,13 +7,13 @@
 
 #include "kompas.h"
 
-unsigned long robot::kompas_zmerUhel()
+ulong kompas_zmerUhel()
 {
-	unsigned long uhel = 0;
+	ulong uhel = 0;
 	
-	while (!PIN(KOMPAS_PIN, KOMPAS));
+	while (!ZKONTROLUJ(KOMPAS_PIN, KOMPAS));
 	
-	while (PIN(KOMPAS_PIN, KOMPAS))
+	while (ZKONTROLUJ(KOMPAS_PIN, KOMPAS))
 	{
 		uhel++;
 	}
@@ -23,7 +23,7 @@ unsigned long robot::kompas_zmerUhel()
 	return uhel;
 }
 
-bool robot::kompas_srovnejSmery(unsigned int prvni_smer, unsigned int druhy_smer)
+int kompas_srovnejSmery(uint prvni_smer, uint druhy_smer)
 {
 	return prvni_smer == druhy_smer;
 }

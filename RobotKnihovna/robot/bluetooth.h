@@ -10,19 +10,11 @@
 #define BLUETOOTH_H_
 
 #include "funkce.h"
+#include "avr/io.h"
+#include "avr/interrupt.h"
 
-namespace robot 
-{
-
-#define RXD RXD
-#define TXD TXD
-
-void bluetooth_init(uint16_t);
-char receiveChar();
-void writeChar(char);
-void writeString(char*);
-bool priselPrikaz();
-
-}
+void bluetooth_init(uint);
+znak receiveChar();
+void writeChar(znak);
 
 #endif /* BLUETOOTH_H_ */
