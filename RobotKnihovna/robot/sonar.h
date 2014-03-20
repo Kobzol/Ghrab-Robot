@@ -31,7 +31,7 @@ typedef struct {
 	uint Vpravo;
 } Vzdalenost;
 
-void sonar_init();
+void sonar_start();
 Vzdalenost sonar_zmerVzdalenosti();
 
 #endif /* SONAR_H_ */

@@ -9,12 +9,21 @@
 #ifndef BLUETOOTH_H_
 #define BLUETOOTH_H_
 
-#include "funkce.h"
 #include "avr/io.h"
 #include "avr/interrupt.h"
+#include "string.h"
+#include "util/atomic.h"
 
-void bluetooth_init(uint);
-znak receiveChar();
-void writeChar(znak);
+#include "funkce.h"
+
+#define BT_VELIKOST_BUFFERU (50)
+volatile znak bt_vstup[BT_VELIKOST_BUFFERU] = { 0 };
+
+void bt_start(uint);
+znak bt_prijmiZnak();
+void bt_posliZnak(znak);
+void bt_posliRetezec(const char *);
+void bt_vynulujBuffer();
+void bt_provedPrikaz();
 
 #endif /* BLUETOOTH_H_ */

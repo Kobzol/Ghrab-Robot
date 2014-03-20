@@ -11,7 +11,7 @@
 /// <remarks>	Jakub, 13.1.14. </remarks>
 ///-------------------------------------------------------------------------------------------------
 
-void motor_init()
+void motor_start()
 {
 	ZAPNI(MOTOR1_DDR, MOTOR1);
 	ZAPNI(MOTOR2_DDR, MOTOR2);
@@ -68,7 +68,7 @@ void toc_doprava()
 	levy_vpred();
 	pravy_vzad();
 	
-	pockej(CAS_MEZI_OTOCENIM);
+	pockej(MOTOR_CAS_MEZI_OTOCENIM);
 	
 	levy_stop();
 	pravy_stop();
@@ -78,7 +78,7 @@ void toc_doleva()
 	pravy_vpred();
 	levy_vzad();
 	
-	pockej(CAS_MEZI_OTOCENIM);
+	pockej(MOTOR_CAS_MEZI_OTOCENIM);
 	
 	levy_stop();
 	pravy_stop();

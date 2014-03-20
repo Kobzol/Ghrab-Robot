@@ -6,7 +6,7 @@
 
 #include "sonar.h"
 
-void sonar_init()
+void sonar_start()
 {
 	ZAPNI(TRIGGER_DDR, TRIGGER);
 }

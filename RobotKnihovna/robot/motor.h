@@ -28,9 +28,9 @@
 #define MOTOR4_PORT PORTD
 #define MOTOR4_DDR DDRD
 
-#define CAS_MEZI_OTOCENIM 500
+#define MOTOR_CAS_MEZI_OTOCENIM 500
 
-void motor_init();
+void motor_start();
 void levy_vpred();
 void levy_vzad();
 void pravy_vpred();
