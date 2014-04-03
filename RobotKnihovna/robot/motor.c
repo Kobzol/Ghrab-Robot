@@ -1,5 +1,5 @@
 /*
- * motor.cpp
+ * motor.c
  *
  */
 
@@ -13,77 +13,77 @@
 
 void motor_start()
 {
-	ZAPNI(MOTOR1_DDR, MOTOR1);
-	ZAPNI(MOTOR2_DDR, MOTOR2);
-	ZAPNI(MOTOR3_DDR, MOTOR3);
-	ZAPNI(MOTOR4_DDR, MOTOR4);
+	ZAPNI(MOTOR_LEVY_1_DDR, MOTOR_LEVY_1);
+	ZAPNI(MOTOR_LEVY_2_DDR, MOTOR_LEVY_2);
+	ZAPNI(MOTOR_PRAVY_1_DDR, MOTOR_PRAVY_1);
+	ZAPNI(MOTOR_PRAVY_2_DDR, MOTOR_PRAVY_2);
 }
-void levy_vpred()
+void motor_levy_vpred()
 {  
-	ZAPNI(MOTOR1_PORT, MOTOR1);
-	VYPNI(MOTOR2_PORT, MOTOR2);	
+	ZAPNI(MOTOR_LEVY_1_PORT, MOTOR_LEVY_1);
+	VYPNI(MOTOR_LEVY_2_PORT, MOTOR_LEVY_2);	
 }
-void levy_vzad()
+void motor_levy_vzad()
 {  
-	VYPNI(MOTOR1_PORT, MOTOR1);
-	ZAPNI(MOTOR2_PORT, MOTOR2); 
+	VYPNI(MOTOR_LEVY_1_PORT, MOTOR_LEVY_1);
+	ZAPNI(MOTOR_LEVY_2_PORT, MOTOR_LEVY_2); 
 }
-void levy_stop()
+void motor_levy_stop()
 {  
-	VYPNI(MOTOR1_PORT, MOTOR1);
-	VYPNI(MOTOR2_PORT, MOTOR2);
+	VYPNI(MOTOR_LEVY_1_PORT, MOTOR_LEVY_1);
+	VYPNI(MOTOR_LEVY_2_PORT, MOTOR_LEVY_2);
 }
-void pravy_vpred()
+void motor_pravy_vpred()
 {
-	ZAPNI(MOTOR3_PORT, MOTOR3);
-	VYPNI(MOTOR4_PORT, MOTOR4);
+	ZAPNI(MOTOR_PRAVY_1_PORT, MOTOR_PRAVY_1);
+	VYPNI(MOTOR_PRAVY_2_PORT, MOTOR_PRAVY_2);
 }
-void pravy_vzad()
+void motor_pravy_vzad()
 {
-	VYPNI(MOTOR3_PORT, MOTOR3);
-	ZAPNI(MOTOR4_PORT, MOTOR4);
+	VYPNI(MOTOR_PRAVY_1_PORT, MOTOR_PRAVY_1);
+	ZAPNI(MOTOR_PRAVY_2_PORT, MOTOR_PRAVY_2);
 }
-void pravy_stop()
+void motor_pravy_stop()
 {
-	VYPNI(MOTOR3_PORT, MOTOR3);
-	VYPNI(MOTOR4_PORT, MOTOR4);
+	VYPNI(MOTOR_PRAVY_1_PORT, MOTOR_PRAVY_1);
+	VYPNI(MOTOR_PRAVY_2_PORT, MOTOR_PRAVY_2);
 }
-void jed_dopredu()
+void motor_jed_dopredu()
 {
-	levy_vpred();
-	pravy_vpred();
+	motor_levy_vpred();
+	motor_pravy_vpred();
 }
-void jed_dozadu()
+void motor_jed_dozadu()
 {
-	levy_vzad();
-	pravy_vzad();
+	motor_levy_vzad();
+	motor_pravy_vzad();
 }
-void zastav()
+void motor_zastav()
 {
-	levy_stop();
-	pravy_stop();
+	motor_levy_stop();
+	motor_pravy_stop();
 }
-void toc_doprava()
+void motor_toc_doprava()
 {
-	levy_vpred();
-	pravy_vzad();
+	motor_levy_vpred();
+	motor_pravy_vzad();
 	
 	pockej(MOTOR_CAS_MEZI_OTOCENIM);
 	
-	levy_stop();
-	pravy_stop();
+	motor_levy_stop();
+	motor_pravy_stop();
 }
-void toc_doleva()
+void motor_toc_doleva()
 {
-	pravy_vpred();
-	levy_vzad();
+	motor_pravy_vpred();
+	motor_levy_vzad();
 	
 	pockej(MOTOR_CAS_MEZI_OTOCENIM);
 	
-	levy_stop();
-	pravy_stop();
+	motor_levy_stop();
+	motor_pravy_stop();
 }
-void toc_uhel(uint cilovy_uhel)
+void motor_toc_uhel(uint cilovy_uhel)
 {
 	cilovy_uhel = cilovy_uhel % 360;
 	
@@ -124,22 +124,22 @@ void toc_uhel(uint cilovy_uhel)
 	{
 		/*if (doprava)
 		{
-			//toc_doprava();
-			levy_vpred();
-			pravy_vzad();
+			//motor_toc_doprava();
+			motor_motor_levy_vpred();
+			motor_pravy_vzad();
 		}
 		else 
 		{
-			pravy_vpred();
-			levy_vzad();
-			//toc_doprava();
+			motor_pravy_vpred();
+			motor_levy_vzad();
+			//motor_toc_doprava();
 		}*/
 		
-		pravy_vpred();
-		levy_vzad();
+		motor_pravy_vpred();
+		motor_levy_vzad();
 		
 		uhel = kompas_zmerUhel(); // zmìøení nového úhlu, dalo by se nahradit odhadem zmìnìné pozice
 	}
 	
-	zastav();
+	motor_zastav();
 }

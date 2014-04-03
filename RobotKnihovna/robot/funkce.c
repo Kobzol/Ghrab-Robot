@@ -1,5 +1,5 @@
 /*
- * functions.cpp
+ * funkce.c
  *
  */ 
 
@@ -12,6 +12,11 @@ void pockej(uint delka)
 	{
 		for (uint u = 0; u < 1000; u++);
 	}
+}
+
+void prevedNaRetezec(char *buffer, int cislo)
+{
+	itoa(cislo, buffer, 10);	
 }
 
 /*void vyblikejCislo(ulong cislo)

@@ -3,9 +3,7 @@
  *
  * Created: 11.1.14 12:48:22
  *  Author: Jakub
- */ 
-
-
+ */
 
 #ifndef SONAR_H_
 #define SONAR_H_
@@ -25,9 +23,11 @@
 #define SONAR_PRAVY_PORT PORTB
 #define SONAR_PRAVY_PIN PINB
 
+#define ODPOVED_SONARY_VZDALENOSTI ("b")
+
 typedef struct {
-	uint Vepredu;
 	uint Vlevo;
+	uint Vepredu;
 	uint Vpravo;
 } Vzdalenost;
 

@@ -1,8 +1,7 @@
 /*
- * sonar.cpp
+ * sonar.c
  *
  */
-
 
 #include "sonar.h"
 

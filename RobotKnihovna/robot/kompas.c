@@ -1,5 +1,5 @@
 /*
- * kompas.cpp
+ * kompas.c
  *
  * Created: 11.1.14 12:49:41
  *  Author: Jakub
@@ -18,7 +18,7 @@ ulong kompas_zmerUhel()
 		uhel++;
 	}
 	
-	uhel = uhel / 22; // magická konstanta
+	uhel = uhel / 105; // magická konstanta
 		
 	return uhel;
 }
