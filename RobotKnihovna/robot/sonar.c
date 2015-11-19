@@ -25,14 +25,16 @@ Vzdalenost sonar_zmerVzdalenosti()
 	// dokud je napìtí na echu, zvìtšuje se hodnota pocet
 	while (ZKONTROLUJ(SONAR_PREDNI_PIN, SONAR_PREDNI) || ZKONTROLUJ(SONAR_PRAVY_PIN, SONAR_PRAVY) || ZKONTROLUJ(SONAR_LEVY_PIN, SONAR_LEVY))
 	{
-		if (ZKONTROLUJ(SONAR_PREDNI_PIN, SONAR_PREDNI))
-		{
-			vzdalenost.Vepredu++;
-		}
 		if (ZKONTROLUJ(SONAR_LEVY_PIN, SONAR_LEVY))
 		{
 			vzdalenost.Vlevo++;
 		}
+		
+		if (ZKONTROLUJ(SONAR_PREDNI_PIN, SONAR_PREDNI))
+		{
+			vzdalenost.Vepredu++;
+		}
+		
 		if (ZKONTROLUJ(SONAR_PRAVY_PIN, SONAR_PRAVY))
 		{
 			vzdalenost.Vpravo++;
@@ -41,5 +43,12 @@ Vzdalenost sonar_zmerVzdalenosti()
     
 	pockej(1);
 	
-	return vzdalenost;  
+	// 500 = 1 cm pro 1 MHz
+	double faktor = (RYCHLOST_PROCESORU / 1000000UL) / 25.0;
+	
+	vzdalenost.Vepredu *= faktor;
+	vzdalenost.Vlevo *= faktor;
+	vzdalenost.Vpravo *= faktor;
+	
+	return vzdalenost;
 }

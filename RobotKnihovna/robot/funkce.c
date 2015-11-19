@@ -4,60 +4,51 @@
  */ 
 
 #include "funkce.h"
-#include <stdint.h>
 
-void pockej(uint delka)
+void bit_nastav(volatile uint8_t* reg, int pin)
 {
-	for (uint i = 0; i < delka; i++)
+	*reg |= (1 << pin);
+}
+void bit_vynuluj(volatile uint8_t* reg, int pin)
+{
+	*reg &= ~(1 << pin);
+}
+void bit_zmen(volatile uint8_t* reg, int pin, char nastav)
+{
+	if (nastav)
 	{
-		for (uint u = 0; u < 1000; u++);
+		bit_nastav(reg, pin);
 	}
+	else bit_vynuluj(reg, pin);
+}
+void bit_prepni(volatile uint8_t* reg, int pin)
+{
+  *reg ^= (1 << pin);
+}
+char bit_vrat(volatile uint8_t* reg, int pin)
+{
+	return !!(*reg & (1 << pin));
+}
+
+void pockej(int ms)
+{
+	_delay_ms(ms);
+}
+
+void pockej_us(int us)
+{
+	const int limit = 760 / (F_CPU / 1000000UL);
+	
+	while (us > limit)
+	{
+		_delay_us(limit);
+		us -= limit;
+	}
+	
+	_delay_us(us);
 }
 
 void prevedNaRetezec(char *buffer, int cislo)
 {
 	itoa(cislo, buffer, 10);	
 }
-
-/*void vyblikejCislo(ulong cislo)
-{
-	cislo += 100;
-	
-	ulong long delay_time = 120;
-	ulong long pauza = 350;
-	
-	VYPNI(DIODA_PORT, DIODA);
-	
-	while (cislo >= 100)
-	{
-		cislo -= 100;
-		ZAPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-		VYPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-	}
-	
-	delay(pauza);
-	
-	while (cislo >= 10)
-	{
-		cislo -= 10;
-		ZAPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-		VYPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-	}
-	
-	delay(pauza);
-	
-	while (cislo >= 1)
-	{
-		cislo -= 1;
-		ZAPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-		VYPNI(DIODA_PORT, DIODA);
-		delay(delay_time);
-	}
-	
-	delay(pauza);
-}*/
